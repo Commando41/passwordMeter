@@ -2,6 +2,8 @@ var password_to_check = document.getElementById("password");
 
 var result = document.getElementById("result");
 
+document.querySelector("#password").addEventListener("input", strengthChecker);
+
 function strengthChecker() {
 
   var password_string = password_to_check.value;
@@ -53,5 +55,15 @@ function strengthChecker() {
             result.innerHTML = "Invalid!";
             return;
         }
+  }
+
+  var points = BigInt(26 * uppercase + 26 * lowercase + 10 * numbers + 31 * specials) ** BigInt(password_string.length);
+    
+  if ( points > 1000000000 ) {
+      result.innerHTML = "STRONG";      
+  } else if ( points > 10000000 ) {
+      result.innerHTML = "Medium";
+  } else {
+      result.innerHTML = "weak";
   }
 }
