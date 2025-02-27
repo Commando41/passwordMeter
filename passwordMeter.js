@@ -40,3 +40,20 @@ function strengthChecker() {
       result.innerHTML = "weak";
   }
 }
+
+setInterval(tips, 30000);
+
+function tips() {
+    let tip = document.getElementById("tips");
+
+    tip.innerHTML = "Sometimes, it's better to use longer passwords than short complex ones!";
+
+    setTimeout(function () {
+        tip.innerHTML = "Strong passwords have a mix of different types of characters!";
+    }, 10000);
+
+    setTimeout( function () {
+        tip.innerHTML = "Avoid using characters that are located next to each other in the keyboard!";
+    }, 20000);
+
+}
