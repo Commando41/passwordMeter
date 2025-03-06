@@ -41,19 +41,15 @@ function strengthChecker() {
   }
 }
 
-setInterval(tips, 30000);
+setInterval(tips, 5000);
 
 function tips() {
-    let tip = document.getElementById("tips");
 
-    tip.innerHTML = "Sometimes, it's better to use longer passwords than short complex ones!";
+    let hints = ["Sometimes, it's better to use longer passwords than short complex ones!",
+                 "Strong passwords have a mix of different types of characters!",
+                 "Avoid using characters that are located next to each other in the keyboard!"
+    ];
 
-    setTimeout(function () {
-        tip.innerHTML = "Strong passwords have a mix of different types of characters!";
-    }, 10000);
-
-    setTimeout( function () {
-        tip.innerHTML = "Avoid using characters that are located next to each other in the keyboard!";
-    }, 20000);
+    document.getElementById("tips").innerHTML = hints[ Math.floor( Math.random() * hints.length ) ];
 
 }
