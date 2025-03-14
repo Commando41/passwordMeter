@@ -14,6 +14,11 @@ function strengthChecker() {
   let numbers = false;
   let specials = false;
 
+  if ( password_string.length == 0 ) { 
+    result.innerHTML = "";
+    return; 
+  }
+
   for ( let index = 0; index < password_string.length; index++ ) {
 
     if ( password_string.charCodeAt(index) > 96 &&  password_string.charCodeAt(index) < 123 ) {
@@ -33,10 +38,13 @@ function strengthChecker() {
   let points = BigInt(26 * uppercase + 26 * lowercase + 10 * numbers + 31 * specials) ** BigInt(password_string.length);
     
   if ( points > 10000000000000000000000n ) {
+      result.style.color = "green";
       result.innerHTML = "STRONG";      
   } else if ( points > 1000000000000n ) {
+      result.style.color = "orange";
       result.innerHTML = "Medium";
   } else {
+      result.style.color = "red";
       result.innerHTML = "weak";
   }
 }
