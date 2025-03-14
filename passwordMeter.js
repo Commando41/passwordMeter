@@ -13,8 +13,11 @@ function strengthChecker() {
   let uppercase = false;
   let numbers = false;
   let specials = false;
+  
+  let borderField = document.getElementById("inputArea");
 
   if ( password_string.length == 0 ) { 
+    borderField.style.borderColor = "cyan";
     result.innerHTML = "";
     return; 
   }
@@ -30,20 +33,25 @@ function strengthChecker() {
     } else if ( specialChars.includes(password_string[index]) ) {
         specials = true;
     } else if ( password_string[index] == ' ' ) {
+        borderField.style.borderColor = "red";
+        result.style.color = "red";
         result.innerHTML = "Invalid!";
         return;
     }
   }
 
   let points = BigInt(26 * uppercase + 26 * lowercase + 10 * numbers + 31 * specials) ** BigInt(password_string.length);
-    
+
   if ( points > 10000000000000000000000n ) {
+      borderField.style.borderColor = "green";
       result.style.color = "green";
       result.innerHTML = "STRONG";      
   } else if ( points > 1000000000000n ) {
+      borderField.style.borderColor = "orange";
       result.style.color = "orange";
       result.innerHTML = "Medium";
   } else {
+      borderField.style.borderColor = "red";
       result.style.color = "red";
       result.innerHTML = "weak";
   }
