@@ -18,7 +18,7 @@ function strengthChecker() {
 
   if ( password_string.length == 0 ) { 
     document.documentElement.style.cssText = "--borderColour: cyan";
-    result.innerHTML = "";
+    result.innerHTML = "&nbsp";
     return; 
   }
 
