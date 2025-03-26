@@ -34,7 +34,6 @@ function strengthChecker() {
         specials = true;
     } else if ( password_string[index] == ' ' ) {
         document.documentElement.style.cssText = "--borderColour: red";
-        result.style.color = "red";
         result.innerHTML = "Invalid!";
         return;
     }
@@ -44,15 +43,12 @@ function strengthChecker() {
 
   if ( points > 10000000000000000000000n ) {
       document.documentElement.style.cssText = "--borderColour: green";
-      result.style.color = "green";
       result.innerHTML = "STRONG";      
   } else if ( points > 1000000000000n ) {
       document.documentElement.style.cssText = "--borderColour: orange";
-      result.style.color = "orange";
       result.innerHTML = "Medium";
   } else {
       document.documentElement.style.cssText = "--borderColour: red";
-      result.style.color = "red";
       result.innerHTML = "weak";
   }
 }
@@ -63,7 +59,9 @@ function tips() {
 
     let hints = ["Sometimes, it's better to use longer passwords than short complex ones!",
                  "Strong passwords have a mix of different types of characters!",
-                 "Avoid using characters that are located next to each other in the keyboard!"
+                 "Avoid using characters that are located next to each other in the keyboard!",
+                 "Don't use common password phrases! They're the first ones used by hackers!"
+
     ];
 
     document.getElementById("tips").innerHTML = hints[ Math.floor( Math.random() * hints.length ) ];
