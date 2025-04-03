@@ -6,6 +6,8 @@ document.querySelector("#password").addEventListener("input", strengthChecker);
 
 var specialChars = '!@#$%^&*()-_=+[{}]\\|,.<>/?;:\'"';
 
+var StrengthWeakness = document.getElementById("Strength&Weaknesses");
+
 function strengthChecker() {
 
   let password_string = password_to_check.value;
@@ -14,13 +16,24 @@ function strengthChecker() {
   let numbers = false;
   let specials = false;
   
-  let borderField = document.getElementById("inputArea");
+  const weaknessess = document.getElementById("Weakness");
+  while ( weaknessess.hasChildNodes() ) {
+    weaknessess.removeChild( weaknessess.firstChild );
+  }
+
+  const strongs = document.getElementById("Strength");
+  while ( strongs.hasChildNodes() ) {
+    strongs.removeChild( strongs.firstChild );
+  }
 
   if ( password_string.length == 0 ) { 
     document.documentElement.style.cssText = "--borderColour: cyan";
     result.innerHTML = "&nbsp";
+    StrengthWeakness.style.display = "none";
     return; 
   }
+
+  StrengthWeakness.style.display = "block";
 
   for ( let index = 0; index < password_string.length; index++ ) {
 
@@ -37,6 +50,17 @@ function strengthChecker() {
         result.innerHTML = "Invalid!";
         return;
     }
+  }
+
+  if ( password_string.length < 7 ) {
+    let newElement = document.createElement("li");
+    newElement.innerHTML = "Password is short!";
+    weaknessess.appendChild(newElement);
+  } 
+  else if ( password_string.length > 14 ) {
+    let newElement = document.createElement("li");
+    newElement.innerHTML = "Password is very long!";
+    strongs.appendChild(newElement);
   }
 
   let points = BigInt(26 * uppercase + 26 * lowercase + 10 * numbers + 31 * specials) ** BigInt(password_string.length);
