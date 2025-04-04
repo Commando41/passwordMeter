@@ -20,7 +20,6 @@ function strengthChecker() {
   while ( weaknessess.hasChildNodes() ) {
     weaknessess.removeChild( weaknessess.firstChild );
   }
-
   const strongs = document.getElementById("Strength");
   while ( strongs.hasChildNodes() ) {
     strongs.removeChild( strongs.firstChild );
@@ -59,7 +58,7 @@ function strengthChecker() {
   } 
   else if ( password_string.length > 14 ) {
     let newElement = document.createElement("li");
-    newElement.innerHTML = "Password is very long!";
+    newElement.innerHTML = "Password is long!";
     strongs.appendChild(newElement);
   }
 
@@ -90,4 +89,11 @@ function tips() {
 
     document.getElementById("tips").innerHTML = hints[ Math.floor( Math.random() * hints.length ) ];
 
+}
+
+var hidden = true;
+function DisplayHide() {
+
+  password_to_check.type = hidden ? "text" : "password";
+  hidden = (hidden + 1) % 2;
 }
