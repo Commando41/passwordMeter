@@ -58,6 +58,16 @@ function strengthChecker() {
     strongs.appendChild(newElement);
   }
 
+  if ( lowercase + uppercase + numbers + specials == 1 ) {
+    let newElement = document.createElement("li");
+    newElement.innerHTML = "Password doesn't contain a mix set of characters";
+    weaknessess.appendChild(newElement);
+  } else if ( lowercase + uppercase + numbers + specials > 2 ) {
+    let newElement = document.createElement("li");
+    newElement.innerHTML = "Password contains a good mix of different sets of charatcters";
+    strongs.appendChild(newElement);
+  }
+
   let points = BigInt(26 * uppercase + 26 * lowercase + 10 * numbers + 31 * specials) ** BigInt(password_string.length);
 
   if ( points > 10000000000000000000000n ) {
@@ -73,23 +83,18 @@ function strengthChecker() {
 }
 
 setInterval(tips, 5000);
-
 function tips() {
-
     let hints = ["Sometimes, it's better to use longer passwords than short complex ones!",
                  "Strong passwords have a mix of different types of characters!",
                  "Avoid using characters that are located next to each other in the keyboard!",
                  "Don't use common password phrases! They're the first ones used by hackers!"
 
     ];
-
     document.getElementById("tips").innerHTML = hints[ Math.floor( Math.random() * hints.length ) ];
-
 }
 
 var hidden = true;
 function DisplayHide() {
-
   password_to_check.type = hidden ? "text" : "password";
   hidden = (hidden + 1) % 2;
 }
