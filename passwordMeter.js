@@ -4,7 +4,7 @@ var result = document.getElementById("result");
 
 document.querySelector("#password").addEventListener("input", strengthChecker);
 
-var specialChars = '!@#$%^&*()-_=+[{}]\\|,.<>/?;:\'"';
+var specialChars = '!@#$%^&*()-_=+[{}]\\|,.<>/?;:\'" ';
 
 var StrengthWeakness = document.getElementById("Strength&Weaknesses");
 
@@ -44,10 +44,6 @@ function strengthChecker() {
         numbers = true;
     } else if ( specialChars.includes(password_string[index]) ) {
         specials = true;
-    } else if ( password_string[index] == ' ' ) {
-        document.documentElement.style.cssText = "--borderColour: red";
-        result.innerHTML = "Invalid!";
-        return;
     }
   }
 
