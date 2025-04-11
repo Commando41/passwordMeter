@@ -70,6 +70,8 @@ function strengthChecker() {
 
   let points = BigInt(26 * uppercase + 26 * lowercase + 10 * numbers + 31 * specials) ** BigInt(password_string.length);
 
+  points = commonPasswordCheck( points );
+
   if ( points > 10000000000000000000000n ) {
       document.documentElement.style.cssText = "--borderColour: green";
       result.innerHTML = "STRONG";      
@@ -80,6 +82,31 @@ function strengthChecker() {
       document.documentElement.style.cssText = "--borderColour: red";
       result.innerHTML = "weak";
   }
+}
+
+function commonPasswordCheck( points ) {
+  let commonPasswords = ["123456789"
+  ,                      "qwerty"
+  ,                      "admin"
+  ,                      "password"
+  ,                      "UNKNOWN"
+  ,                      "111111"
+  ,                      "1234"
+  ,                      "Admin123"
+  ,                      "user"
+  ,                      "Aa123456"
+  ,                      "********"
+  ,];
+
+  for ( let index = 0; index < commonPasswords.length; index++ ) {
+    if ( password_to_check.value == commonPasswords[ index ] ) {
+      let newElement = document.createElement("li");
+      newElement.innerHTML = "Your Password is a very commonly used!";
+      document.getElementById("Weakness").appendChild(newElement);
+      return 0;
+    }
+  }
+  return points;
 }
 
 setInterval(tips, 5000);
