@@ -72,6 +72,8 @@ function strengthChecker() {
 
   points = commonPasswordCheck( points );
 
+  points = wordNeighbour( points );
+
   if ( points > 10000000000000000000000n ) {
       document.documentElement.style.cssText = "--borderColour: green";
       result.innerHTML = "STRONG";      
@@ -107,6 +109,27 @@ function commonPasswordCheck( points ) {
     }
   }
   return points;
+}
+
+function wordNeighbour( points ) {
+
+  let repeats = 0;
+  var keyboardStrings = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBN<>? ";
+  
+  for ( let index = 0; index < password_to_check.value.length - 2; index++ ) {
+    if ( keyboardStrings.includes( password_to_check.value[index] + password_to_check.value[index + 1] + password_to_check.value[index + 2] ) ) {
+      repeats++;
+      if ( repeats == 1 ) {
+        let newElement = document.createElement("li");
+        newElement.innerHTML = "Your Password contains characters who are next to each other in the keyboard!";
+        newElement.setAttribute( "id" , "repeatedVals" );
+        document.getElementById("Weakness").appendChild(newElement);
+      } else {
+        document.getElementById("repeatedVals").innerHTML = "Your Password contains characters who are next to each other in the keyboard! It has occured " + repeats + " times!";
+      }
+    }
+  }
+  return points - BigInt(5000000 * repeats);
 }
 
 setInterval(tips, 5000);
