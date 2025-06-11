@@ -127,6 +127,9 @@ function wordNeighbour( points ) {
       } else {
         document.getElementById("repeatedVals").innerHTML = "Your Password contains characters who are next to each other in the keyboard! It has occured " + repeats + " times!";
       }
+      while ( index < password_to_check.value.length - 2 && keyboardStrings.includes( password_to_check.value[index] + password_to_check.value[index + 1] + password_to_check.value[index + 2] ) ) {
+        index++;
+      }
     }
   }
   return points - BigInt(5000000 * repeats);
