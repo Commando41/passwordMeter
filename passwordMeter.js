@@ -98,6 +98,12 @@ function commonPasswordCheck( points ) {
   ,                      "user"
   ,                      "Aa123456"
   ,                      "********"
+  ,                      "qwerty1"
+  ,                      "Password1"
+  ,                      "school"
+  ,                      "boobies"
+  ,                      "charlie"
+  ,                      "12345678"
   ,];
 
   for ( let index = 0; index < commonPasswords.length; index++ ) {
